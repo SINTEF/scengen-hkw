@@ -1,0 +1,17 @@
+# Global ingore patterns for Mercurial
+syntax: glob
+
+# Code::Blocks generated files
+*.depend
+*.layout
+
+# Visual C++ generated files
+scenGen.ncb
+scenGen.suo
+*.user
+
+# results of compilation
+./bin
+
+# other
+./doc/html

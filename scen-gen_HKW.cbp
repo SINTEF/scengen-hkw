@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="scen-gen_HKW" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/scen-gen_HKW" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug/" />
+				<Option object_output=".obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/scen-gen_HKW" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Release/" />
+				<Option object_output=".obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
+					<Add option="-DNDEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="cubic_trsf_dll">
+				<Option output="bin/Release/HKW_cubic" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Release/" />
+				<Option object_output=".obj/Release/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-fvisibility=hidden" />
+					<Add option="-DBUILDING_DLL" />
+				</Compiler>
+				<Linker>
+					<Add option="-fvisibility=hidden" />
+				</Linker>
+			</Target>
+			<Target title="Release_dll">
+				<Option output="bin/Release/scen-gen_HKW" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Release/" />
+				<Option object_output=".obj/Release/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-DBUILDING_DLL" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="HKW_cubic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="HKW_cubic.h" />
+		<Unit filename="HKW_sg.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Release_dll" />
+		</Unit>
+		<Unit filename="HKW_sg.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Release_dll" />
+		</Unit>
+		<Unit filename="matrix.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Release_dll" />
+		</Unit>
+		<Unit filename="matrix.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Release_dll" />
+		</Unit>
+		<Unit filename="misc_macros.h" />
+		<Unit filename="moments.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Release_dll" />
+		</Unit>
+		<Unit filename="moments.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Release_dll" />
+		</Unit>
+		<Unit filename="sg_HKW.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="sg_functions.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Release_dll" />
+		</Unit>
+		<Unit filename="sg_functions.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Release_dll" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
