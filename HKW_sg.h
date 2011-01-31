@@ -21,10 +21,10 @@
 		- 4 -> Higher moments are not scaled by StDev
 		- 8 -> TarMom[i-1] = E{X^i} ... lower bits are ignored in this case \n
 		The reasonable values are 0,1,2,3,4,5,6,7,8
-	\param[in] p_TarMoms pointer to matrix of target moments
-	\param[in] p_TgCorrs pointer to matrix of target correlations
-	\param[in] p_Probs pointer to vector of target probabilities
-	\param     p_OutMat pointer to matrix where the scenarios go
+	\param[in] p_TarMoms pointer to [4 x N] matrix of target moments
+	\param[in] p_TgCorrs pointer to [N x N] matrix of target correlations
+	\param[in] p_Probs pointer to [S] vector of target probabilities
+	\param     p_OutMat pointer to [N x S] matrix where the scenarios go
 	\param[in] MaxErrMom maximum allowed error for moments
 	\param[in] MaxErrCorr maximum allowed error for correlations
 	\param[in] TestLevel level of output during the algorithm
@@ -33,6 +33,11 @@
 	\param[in] UseStartValues use values in p_OutMat as a starting point \n
 		This will only be used in the first trial. If this does not converge
 		and \a MaxTrial > 1, the other trials start from a random starting point.
+	\param[out] p_errMom where to put final error in moments (or NULL)
+	\param[out] p_errCorr where to put final error in correlations (or NULL)
+	\param[out] p_nmbTrial where to put the number of trials used (or NULL)
+	\param[out] p_nmbIter where to put the number of iterations used (or NULL)
+	\return zero on convergence, one otherwise
 
 	The main structure of the algorithm is as follows:
 	- 1	trial = 1
@@ -55,7 +60,9 @@ DLL_PUBLIC int HKW_ScenGen(int const FormatOfMoms,
                            TMatrix * const p_OutMat,
                            double const MaxErrMom, double const MaxErrCorr,
                            int const TestLevel, int const MaxTrial,
-                           int const MaxIter, int const UseStartValues);
+                           int const MaxIter, int const UseStartValues,
+                           double * p_errMom, double * p_errCorr,
+                           int * p_nmbTrial, int * p_nmbIter);
 
 
 /// wrapper for HKW_ScenGen(), using only standard C arrays
@@ -71,6 +78,8 @@ DLL_PUBLIC int scengen_HKW(double ** const tgMoms, int const FormatOfMoms,
                            double ** const outSc,
                            double const MaxErrMom, double const MaxErrCorr,
                            int const TestLevel, int const MaxTrial,
-                           int const MaxIter, int const UseStartValues);
+                           int const MaxIter, int const UseStartValues,
+                           double * p_errMom, double * p_errCorr,
+                           int * p_nmbTrial, int * p_nmbIter);
 
 #endif

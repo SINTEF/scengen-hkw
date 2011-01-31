@@ -34,7 +34,9 @@ int HKW_ScenGen(int const FormatOfMoms, TMatrix const * const p_TarMoms,
                 TMatrix * const p_OutMat,
                 double const MaxErrMom, double const MaxErrCorr,
                 int const TestLevel, int const MaxTrial, int const MaxIter,
-                int const UseStartValues)
+                int const UseStartValues,
+                double * p_errMom, double * p_errCorr,
+                int * p_nmbTrial, int * p_nmbIter)
 {
 	int i,j,s;
 	int err_code;
@@ -405,9 +407,6 @@ int HKW_ScenGen(int const FormatOfMoms, TMatrix const * const p_TarMoms,
 	Mat_Kill(&TmpOutMat);
 
 
-	if ((errMom>MaxErrMom) | (errCorr>MaxErrCorr))
-		return(1);
-
 	// Re-scale the outcomes to the original moments
 	// Assumes that the second target moment is STANDARD DEVIATION
 	//     and that the higher target moments are scaled!!!
@@ -416,7 +415,13 @@ int HKW_ScenGen(int const FormatOfMoms, TMatrix const * const p_TarMoms,
 			p_OutMat->val[i][s] = p_TarMoms->val[0][i]
 			 + p_TarMoms->val[1][i] * p_OutMat->val[i][s];
 
-	return(0);
+	// copy results to the output pointers
+	if (p_errMom != NULL) *p_errMom = errMom;
+	if (p_errCorr != NULL) *p_errCorr = errCorr;
+	if (p_nmbTrial != NULL) *p_nmbTrial = trial;
+	if (p_nmbIter != NULL) *p_nmbIter = iter;
+
+	return ( (errMom>MaxErrMom) | (errCorr>MaxErrCorr) ? 1 : 0 );
 }
 
 
@@ -425,7 +430,9 @@ int scengen_HKW(double ** const tgMoms, int const FormatOfMoms,
                 int const nVar, int const nScen, double ** outSc,
                 double const MaxErrMom, double const MaxErrCorr,
                 int const TestLevel, int const MaxTrial, int const MaxIter,
-                int const UseStartValues)
+                int const UseStartValues,
+                double * p_errMom, double * p_errCorr,
+                int * p_nmbTrial, int * p_nmbIter)
 {
 	// create temp. matrices and vectors, directly using the provided arrays
 	// -> no allocation, unless we get NULL pointers
@@ -448,7 +455,8 @@ int scengen_HKW(double ** const tgMoms, int const FormatOfMoms,
 
 	int retVal = HKW_ScenGen(FormatOfMoms, &TarMoms, &TgCorrs, &Probs, &OutMat,
 	                         MaxErrMom, MaxErrCorr, TestLevel, MaxTrial,
-	                         MaxIter, UseStartValues);
+	                         MaxIter, UseStartValues,
+	                         p_errMom, p_errCorr, p_nmbTrial, p_nmbIter);
 
 	/* De-allocate the temp. vector of probabilities
 	   Note that we cannot kill OutMat, since this would de-allocate the data

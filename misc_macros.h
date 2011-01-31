@@ -51,6 +51,8 @@
 
 #define allocate(var, type, size) if ((var = (type *) malloc(size * sizeof(type))) == NULL) { printf("\nNOT ENOUGH MEMORY!\n\n");	exit(1); }
 
+#endif
+
 
 // ----------------------------------------------------------------
 // macros for cross-platform dll-exporting
@@ -82,8 +84,5 @@
     #define DLL_LOCAL
   #endif
 #endif
-
-#endif
-
 
 #endif

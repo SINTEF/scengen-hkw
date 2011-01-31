@@ -166,9 +166,10 @@ int main(int argc, char* argv[])
 	// GENERATION ROUTINE
 	errorlevel = HKW_ScenGen(FormatOfTgMoms, &TgMoms, &TgCorrs, &Probs, &OutMat,
 	                         MaxErrMom, MaxErrCorr, TestLevel,
-	                         MaxTrial, HKW_MaxIter, UseStartDistrib);
+	                         MaxTrial, HKW_MaxIter, UseStartDistrib,
+	                         NULL, NULL, NULL, NULL);
 	if (errorlevel>0) {
-		printf("\nThere was some problem during the algorithm...\n\n");
+		printf("\nWarning: the algorithm did not converge!\n\n");
 		return(1);
 	}
 
