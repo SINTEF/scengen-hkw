@@ -7,8 +7,8 @@
 #ifndef HKW_SG_H
 #define HKW_SG_H
 
-#include "misc_macros.h" // defines DLL_PUBLIC
 #include "matrix.h"
+#include "dll_export_def.h"
 
 
 /// main scenario-generation procedure

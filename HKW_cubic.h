@@ -3,7 +3,7 @@
 #ifndef HKW_CUBIC_H
 #define HKW_CUBIC_H
 
-#include "misc_macros.h" // defines DLL_PUBLIC
+#include "dll_export_def.h"
 
 #define N 4           /// number of moments
 #define NBITMAX 1000

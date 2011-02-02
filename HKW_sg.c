@@ -11,6 +11,7 @@
 
 #include "HKW_sg.h"
 #include "HKW_cubic.h"    // cubic transformation
+#include "misc_macros.h"  // misc. C macros used here (like frand)
 #include "sg_functions.h" // general functions needed for SG
 
 

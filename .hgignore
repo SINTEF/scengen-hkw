@@ -11,6 +11,7 @@ scenGen.suo
 *.user
 
 # results of compilation
+./.obj
 ./bin
 
 # other
