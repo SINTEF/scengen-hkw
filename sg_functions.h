@@ -57,6 +57,7 @@ double ErrorCorrs(int const nVar, double ** const Corr, double ** const TgCorr);
 /// transform the original target moments to new ones with the right format
 /**
 	\param[in] nVar number of random variables
+	\param[in] nSc number of scenarios - used only for population estimators
 	\param[in] Format format of the target moments - see \c HKW_ScenGen
 	\param[in] TarMom input array (2D) of the target moments in format \a Format
 	\param[out] TgMom output array (2D) in the "right" format
@@ -64,7 +65,7 @@ double ErrorCorrs(int const nVar, double ** const Corr, double ** const TgCorr);
 	\warning On problems exits the code!
 	\warning Changes values of \a Format and \a TarMom!
 **/
-int CreateTargetMoments(int const nVar, unsigned short Format,
+int CreateTargetMoments(int const nVar, int const nSc, unsigned short Format,
                         double ** const TarMom, double ** const TgMom);
 
 

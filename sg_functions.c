@@ -136,17 +136,18 @@ double ErrorCorrs(int const nVar, double ** const Corr, double ** const TgCorr)
 
 
 /* Transform the original target moments to the right format
-	 Create the new moments (used inside the algorithm)
-	 */
-int CreateTargetMoments(int const nVar, unsigned short Format,
+	Create the new moments (used inside the algorithm)
+	*/
+int CreateTargetMoments(int const nVar, int const nSc, unsigned short Format,
                         double ** const TarMom, double ** const TgMom)
 {
 	// 1. TRANSFORM THE TARGET MOMENTS (TarMom) TO THE ASSUMED FORMAT
 	//     : MEAN, STDEV and the higher moments SCALED by StDev
-	const unsigned short VarForStDev = 1;
-	const unsigned short KurtoseMinus3 = 2;
-	const unsigned short NotScaled = 4;
-	const unsigned short NotCentralMoms = 8;
+	const unsigned short PopulEstim = 1;
+	const unsigned short VarForStDev = 2;
+	const unsigned short KurtoseMinus3 = 4;
+	const unsigned short NotScaled = 8;
+	const unsigned short NotCentralMoms = 16;
 	int i,j;
 
 	// MOMENTS are NOT CENTRAL, i.e. TarMom[i-1]=E{X^i} -> CENTRALISE
@@ -177,11 +178,33 @@ int CreateTargetMoments(int const nVar, unsigned short Format,
 			for (j=2; j<4; j++)
 				TarMom[j][i] /= pow(TarMom[1][i],j+1);
 	}
-	if (Format & KurtoseMinus3) {
+	if ((Format & KurtoseMinus3) && !(Format & PopulEstim)) {
 		// The 4. moment is Kurtose - 3
 		for (i=0; i<nVar; i++)
 			TarMom[3][i] += 3;
 	}
+
+	// 2. IF REQUIRED, CHANGE THE MOMENTS SO THAT THE USER GETS THE CORRECT
+	//    VALUES USING THE STANDARD ESTIMATORS ON SCENARIOS (IN A SPREADSEET)
+	//    For formulas, see OpenOffice Calc documentation for skew and kurt:
+	//    http://wiki.services.openoffice.org/wiki/Documentation/How_Tos/Calc:_SKEW_function
+	//    http://wiki.services.openoffice.org/wiki/Documentation/How_Tos/Calc:_KURT_function
+	double N = (double) nSc; // need it as double for division!
+	if (Format & PopulEstim) {
+		for (i=0; i<nVar; i++) {
+			// standard deviation
+			TarMom[1][i] /= sqrt(N / (N - 1)); // correct the multiplier
+			// skewness:
+			TarMom[2][i] *= (N - 1) * (N - 2) / N  / N; // correct sum multiplier
+			TarMom[2][i] /= pow((N - 1) / N, 1.5);      // correct std. dev.
+			// kurtosis
+			TarMom[3][i] += 3 * (N - 1) * (N - 1) / ((N - 2) * (N - 3));
+			TarMom[3][i] *= (N - 1) * (N - 2) * (N - 3) / (N * (N + 1))  /N;
+			TarMom[3][i] /= pow((N - 1) / N, 2);
+		}
+	}
+
+	// 3. CHECK CONSISTENCY
 	// Control kurtose: kurt > 1 + skew^2
 	for (i=0; i<nVar; i++) {
 		if (TarMom[3][i] <= 1 + pow(TarMom[2][i],2)) {
@@ -192,7 +215,7 @@ int CreateTargetMoments(int const nVar, unsigned short Format,
 		}
 	}
 
-	// 2. CREATE THE MOMENTS FOR INSIDE THE ALGORITHM - TgMom
+	// 4. CREATE THE MOMENTS FOR INSIDE THE ALGORITHM - TgMom
 	for (i=0; i<nVar; i++) {
 		TgMom[0][i] = 0;
 		TgMom[1][i] = 1;

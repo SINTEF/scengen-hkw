@@ -30,9 +30,8 @@ static int RandomSeed = 0;
 
 void PrintUsageAndExit(char ExecName[])
 {
-	printf("\nScenario generation code based on paper by Hoyland, Kaut & Wallace\n");
-	printf("Code by Michal Kaut (michal.kaut@iot.ntnu.no) & Diego Mathieu\n");
-	printf("This code is not really maintained - please contact us if you have any problem.\n");
+	printf("\nScenario generation code based on paper by K. Høyland, M. Kaut & S.W. Wallace.\n");
+	printf("Code by Michal Kaut (michal.kaut@iot.ntnu.no) & Diego Mathieu.\n");
 
 	printf("\nUsage: %s nmb_scen [options]\n", ExecName);
 	printf("\nList of options                                                 %15s\n", "default value");
@@ -48,23 +47,25 @@ void PrintUsageAndExit(char ExecName[])
 	printf(" -r rSeed  ... set a random seed                                %15s\n", "use comp. time");
 	printf(" -h        ... display an additional Help message\n");
 
-	printf("\n%s:\n  %s\n  %s\n  %s\n  %s\n",
-		"option -f: format is a sum of following bits (any number from 0 to 8)",
-	  "1 -> 2nd moment is Var instead of StDev",
-		"2 -> 4th moment is Kurtosis - 3",
-		"4 -> Higher moments are not scaled by StDev",
-		"8 -> Use non-central moments, E{X^i} ... lower bits are ignored"
+	printf("\n%s:\n  %s\n  %s\n  %s\n  %s\n  %s\n",
+		"option -f: format is a sum of following bits (any number from 0 to 16)",
+		" 1 -> use population estimators (as in spreadsheets)",
+		" 2 -> 2nd moment is Var instead of StDev",
+		" 4 -> 4th moment is Kurtosis - 3",
+		" 8 -> Higher moments are not scaled by StDev",
+		"16 -> Use non-central moments, E{X^i} ... lower bits are ignored"
 	);
 	exit(1);
 }
 
+
 void PrintHelpAndExit(char ExecName[])
 {
 	printf("\n");
-	printf("\nScenario generation code based on paper by Hoyland, Kaut & Wallace\n");
-	printf("Code by Michal Kaut (michal.kaut@iot.ntnu.no) & Diego Mathieu\n");
-	printf("This is an experimental code - please contact us if you have any problem.\n");
-
+	printf("\nScenario generation code from paper 'A Heuristic for Moment-matching Scenario");
+	printf("\nGeneration' by K. Høyland, M. Kaut & S.W. Wallace; Computational Optimization");
+	printf("\nand Applications, 24 (2-3), pp. 169–185, 2003; doi:10.1023/A:1021853807313.\n");
+	printf("Code by Michal Kaut (michal.kaut@iot.ntnu.no) & Diego Mathieu.\n");
 	printf("\n");
 	printf("The code generates scenarios for multivariate random variables.\n");
 	printf("Distribution is described by the first four moments and correlations.\n");
@@ -74,7 +75,7 @@ void PrintHelpAndExit(char ExecName[])
 	printf("\nINPUT FILES\n");
 	printf("target moments must be in file named: 'tg_moms.txt'\n");
 	printf("target correlations must be in file: 'tg_corrs.txt'\n");
-	printf("*.mat files are file including matrices. Their format is:\n");
+	printf("These files must include a matrix of numbers in the following format:\n");
 	printf(" : number of rows\n");
 	printf(" : number of columns\n");
 	printf(" : data (by rows)\n");

@@ -1,5 +1,5 @@
 /*********************************************************************/
-/***  Høyland-Kaut-Wallace algorithm for scenario generation       ***/
+/***  HÃ¸yland-Kaut-Wallace algorithm for scenario generation       ***/
 /***                                                               ***/
 /***  author: Michal Kaut                                          ***/
 /*********************************************************************/
@@ -85,8 +85,8 @@ int HKW_ScenGen(int const FormatOfMoms, TMatrix const * const p_TarMoms,
 
 	// Transform the target moments
 	Mat_InitAsBigAs(&TgMoms, p_TarMoms);
-	CreateTargetMoments(nVar, (unsigned short) FormatOfMoms, p_TarMoms->val,
-	                    TgMoms.val);
+	CreateTargetMoments(nVar, nScen, (unsigned short) FormatOfMoms,
+	                    p_TarMoms->val, TgMoms.val);
 	if (TestLevel > 3) {
 		Mat_Display(p_TarMoms, "TARMOM");
 		Mat_Display(&TgMoms, "MOM");

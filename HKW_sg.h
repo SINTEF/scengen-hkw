@@ -1,7 +1,7 @@
 /*********************************************************************/
-/***  H�yland-Kaut-Wallace algorithm for scenario generation       ***/
+/***  Høyland-Kaut-Wallace algorithm for scenario generation       ***/
 /***                                                               ***/
-/***  author: Michal Kaut                                          ***/
+/***  \author: Michal Kaut                                         ***/
 /*********************************************************************/
 
 #ifndef HKW_SG_H
@@ -16,11 +16,12 @@
 	Generates one subtree using the HKW algorithm (heuristics)
 	\param[in] FormatOfMoms - format of the target moments
 		It is a sum of following bits:
-		- 1 -> 2nd moment is Var instead of StDev
-		- 2 -> 4th moment is Kurtose - 3
-		- 4 -> Higher moments are not scaled by StDev
-		- 8 -> TarMom[i-1] = E{X^i} ... lower bits are ignored in this case \n
-		The reasonable values are 0,1,2,3,4,5,6,7,8
+		-  1 -> use population estimators (as in spreadsheets)
+		-  2 -> 2nd moment is Var instead of StDev
+		-  4 -> 4th moment is Kurtose - 3
+		-  8 -> Higher moments are not scaled by StDev
+		- 16 -> TarMom[i-1] = E{X^i} ... lower bits are ignored in this case \n
+		The first bit should be only combined with the second one.
 	\param[in] p_TarMoms pointer to [4 x N] matrix of target moments
 	\param[in] p_TgCorrs pointer to [N x N] matrix of target correlations
 	\param[in] p_Probs pointer to [S] vector of target probabilities
@@ -83,3 +84,24 @@ DLL_PUBLIC int scengen_HKW(double ** const tgMoms, int const FormatOfMoms,
                            int * p_nmbTrial, int * p_nmbIter);
 
 #endif
+
+/** \mainpage Moment-matching scenario generation heuristic
+
+	This code implements the moment-matching heuristic from paper
+	'<em>A Heuristic for Moment-matching Scenario Generation</em>'
+	by Kjetil Høyland, Michal Kaut and Stein W. Wallace, published in
+	<em>Computational Optimization and Applications</em>, 24 (2-3), pp. 169–185,
+	2003; <a href="http://dx.doi.org/doi:10.1023/A:1021853807313">
+	doi:10.1023/A:1021853807313</a>. Most of the code was written by
+	Michal Kaut, except for the cubic_solve() function written by Diego Mathieu.
+
+	\section License
+	The code is freely distributed under the
+	<a href="http://www.eclipse.org/legal/epl-v10.html">
+	Eclipse Public License</a>. For information about the license, including
+	compatibility with other licenses, see the official
+	<a href="http://www.eclipse.org/legal/eplfaq.php">FAQ</a> or its
+	<a href="http://en.wikipedia.org/wiki/Eclipse_Public_License">Wikipedia</a>
+	entry.
+
+**/
