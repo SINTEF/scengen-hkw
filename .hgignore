@@ -16,3 +16,6 @@ scenGen.suo
 
 # other
 ./doc/html
+pck/*.tgz
+pck/*.txz
+pck/*.zip

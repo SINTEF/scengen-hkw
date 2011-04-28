@@ -1,12 +1,12 @@
-Scenario-generation code sg_HKW
+Scenario-generation code scen-gen_HKW
 
 This code implements the moment-matching heuristic from paper 'A Heuristic for
 Moment-matching Scenario Generation' by Kjetil Høyland, Michal Kaut and Stein W.
 Wallace, published in Computational Optimization and Applications, 24 (2-3), pp.
 169–185, 2003; doi:10.1023/A:1021853807313.
-Most of the code was written by Michal Kaut, except for the cubic_solve()
-function written by Diego Mathieu.
-The code has been tested with gcc on both Linux and Windows.
+Most of the code was written by Michal Kaut, except for the cubic solver
+written by Diego Mathieu.
+These binaries have been compiled from Code::Blocks IDE using the gcc compiler.
 Problems, questions, and suggestions should be send to: michal.kaut@iot.ntnu.no
 
 LICENSE
@@ -27,13 +27,13 @@ equiprobable scenarios, but it is also possible to supply the probabilities in
 an additional file.
 
 
-COMPILING
-The package includes a project file scengen_HKW for the open-source IDE
-Code::Blocks, see http://www.codeblocks.org/. This project allows to build
-the stand-alone executable and also a DLL with the main procedure, plus
-a small executable that uses this DLL.
-
-In addition, there is a very simple Makefile to build the main executable.
+INCLUDED FILES
+scen-gen_HKW     	the main binary/executable
+license_info.txt 	information about licensing of the code
+prob.txt         	example of supplied probabilities (for 100 sc.)
+read_me.txt      	this file
+tg_moms.txt      	example of matrix of target moments
+tg_corrs.txt     	example of target correlation matrix
 
 
 USAGE
@@ -67,8 +67,3 @@ where the value is a sum of following bits:
 For example, to use spreadsheet functions (average, stdev, skew, kurt), one
 needs to use "-f 1". To use variance (var) instead of stdev, one would need
 to use "-f 3", since we use the first two bits and 1 + 2 = 3.
-
-
-DOCUMENTATION
-To generate a full documentation, run doxygen in the main folder.
-This will create HTML documentation in the doc/html folder.
