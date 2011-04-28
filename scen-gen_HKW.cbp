@@ -33,22 +33,19 @@
 					<Add option="-s" />
 				</Linker>
 			</Target>
-			<Target title="cubic_trsf_dll">
-				<Option output="bin/Release/libHKW_cubic" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/Release/" />
-				<Option object_output=".obj/Release_DLL/" />
+			<Target title="Debug_dll">
+				<Option output="bin/Debug/libscen-gen_HKW" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug/" />
+				<Option object_output=".obj/Debug_DLL/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
+					<Add option="-g" />
 					<Add option="-fPIC" />
-					<Add option="-fvisibility=hidden" />
 					<Add option="-DBUILDING_DLL" />
 				</Compiler>
-				<Linker>
-					<Add option="-fvisibility=hidden" />
-				</Linker>
 			</Target>
 			<Target title="Release_dll">
 				<Option output="bin/Release/libscen-gen_HKW" prefix_auto="1" extension_auto="1" />
@@ -59,9 +56,30 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
 					<Add option="-fPIC" />
 					<Add option="-DBUILDING_DLL" />
 				</Compiler>
+			</Target>
+			<Target title="cubic_trsf_dll">
+				<Option output="bin/Release/libHKW_cubic" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Release/" />
+				<Option object_output=".obj/Release_DLL/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
+					<Add option="-fPIC" />
+					<Add option="-fvisibility=hidden" />
+					<Add option="-DBUILDING_DLL" />
+				</Compiler>
+				<Linker>
+					<Add option="-fvisibility=hidden" />
+				</Linker>
 			</Target>
 			<Target title="Release_w-dll">
 				<Option output="bin/Release/scen-gen_HKW_w-dll" prefix_auto="1" extension_auto="1" />
@@ -91,24 +109,28 @@
 			<Option target="Release" />
 			<Option target="cubic_trsf_dll" />
 			<Option target="Release_dll" />
+			<Option target="Debug_dll" />
 		</Unit>
 		<Unit filename="HKW_cubic.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="cubic_trsf_dll" />
 			<Option target="Release_dll" />
+			<Option target="Debug_dll" />
 		</Unit>
 		<Unit filename="HKW_sg.c">
 			<Option compilerVar="CC" />
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="Release_dll" />
+			<Option target="Debug_dll" />
 		</Unit>
 		<Unit filename="HKW_sg.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="Release_dll" />
 			<Option target="Release_w-dll" />
+			<Option target="Debug_dll" />
 		</Unit>
 		<Unit filename="dll_export_def.h" />
 		<Unit filename="matrix.c">
@@ -117,12 +139,14 @@
 			<Option target="Release" />
 			<Option target="Release_dll" />
 			<Option target="Release_w-dll" />
+			<Option target="Debug_dll" />
 		</Unit>
 		<Unit filename="matrix.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="Release_dll" />
 			<Option target="Release_w-dll" />
+			<Option target="Debug_dll" />
 		</Unit>
 		<Unit filename="misc_macros.h" />
 		<Unit filename="moments.c">
@@ -130,11 +154,13 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="Release_dll" />
+			<Option target="Debug_dll" />
 		</Unit>
 		<Unit filename="moments.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="Release_dll" />
+			<Option target="Debug_dll" />
 		</Unit>
 		<Unit filename="sg_HKW.c">
 			<Option compilerVar="CC" />
@@ -147,11 +173,13 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="Release_dll" />
+			<Option target="Debug_dll" />
 		</Unit>
 		<Unit filename="sg_functions.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="Release_dll" />
+			<Option target="Debug_dll" />
 		</Unit>
 		<Extensions>
 			<code_completion />
