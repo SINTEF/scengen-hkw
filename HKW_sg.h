@@ -70,8 +70,12 @@ DLL_PUBLIC int HKW_ScenGen(int const FormatOfMoms,
 /**
 	For description of parameters see HKW_ScenGen(). \n
 	The only difference, apart from the types, is that \a probs is allowed
-	to be NULL, meaning equiprobable scenarios, and \a outSc is allowed to
-	be NULL, in which case it gets allocated.
+	to be NULL, meaning equiprobable scenarios. (Note that it will still be
+	NULL on return, since C passes all parameters by values! For the same
+	reason, we cannot pass \a outSc=NULL and let the code allocate it - it would
+	do so and the code would work, but the \a outSc will be NULL on return, i.e.
+	we would not be able to access the scenario values. If we wanted to allow
+	it, we would have to pass a pointer to the array, i.e. double***).
 **/
 DLL_PUBLIC int scengen_HKW(double ** const tgMoms, int const FormatOfMoms,
                            double ** const tgCorrs, double * const probs,

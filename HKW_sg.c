@@ -450,8 +450,8 @@ int scengen_HKW(double ** const tgMoms, int const FormatOfMoms,
 	}
 	TMatrix OutMat={nVar, nScen, outSc};
 	if (outSc == NULL) {
-		Mat_Init(&OutMat, nVar, nScen);
-		outSc = OutMat.val;
+		printf ("Error: scengen_HKW(): outSc array must be pre-allocated!\n");
+		exit(1);
 	}
 
 	int retVal = HKW_ScenGen(FormatOfMoms, &TarMoms, &TgCorrs, &Probs, &OutMat,
