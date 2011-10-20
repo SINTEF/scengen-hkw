@@ -89,7 +89,7 @@ DLL_PUBLIC int scengen_HKW(double ** const tgMoms, int const FormatOfMoms,
 
 #endif
 
-/** \mainpage Moment-matching scenario generation heuristic
+/** \page Moment-matching scenario generation heuristic
 
 	This code implements the moment-matching heuristic from paper
 	'<em>A Heuristic for Moment-matching Scenario Generation</em>'
