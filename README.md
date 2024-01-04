@@ -28,9 +28,23 @@ The project includes the following _targets_:
 	- generates `libHKW_cubic.[dll|so]` containing only the cubic transformation for moment correction
 
 
+### Auto-generated makefiles
+
+The package includes three platform-specific makefiles `Makefile.[win|unix|mac]`, auto-generated from the project file using Code::Blocks' `cbp2make` tool.
+
+The syntax for creating the makefile is:
+
+```console
+<PATH_TO_CODEBLOCKS>/cbp2make -in scen-gen_HKW.cbp -out Makefile.<PLATFORM> -<PLATFORM>
+```
+with `<PLATFORM>` being one of `win`, `unix`, or `mac`. On Windows, the `/` would need to be replaced by `\`.
+
+The makefiles includes the same targets as the project files, plus the usual `all` meta-target.
+They have been tested on Windows (using MSYS with GCC) and Linux (Ubuntu on WSL2).
+
 ### Minimal makefile
 
-Using `Makefile`, which is a minimal make file for building of the main executable file.
+In addition, there is also a manually-created `Makefile`, illustrating the minimal requirements for building of the main executable file.
 
 
 Usage of `scen-gen_HKW[.exe]`
