@@ -20,6 +20,11 @@
 #define MaxCubIter 2     /// Max number of cubic transf. per HKW iteration
 
 
+// input and target moments - defined in HKW_cubic.c
+extern double InMom[13]; // Input moments + In[0]:=1
+extern double TgMom[4];  // Target moments
+
+
 /* MAIN GENERATION FUNCTION
 	 Generates one subtree using the HKW algorithm (heuristics)
 	 Parameter FormatOfMoms describes the format of target moments.

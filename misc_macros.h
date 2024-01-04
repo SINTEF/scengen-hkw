@@ -26,21 +26,29 @@
 // ----------------------------------------------------------------
 // gen. mathematical macros
 
-/* These definitions need GNU C extensions!
-   With the standard definitions (see below),
+/* min() and max() macros
+   With the 'standard definitions' (see below),
    min(x,f(x)) will cause f(x) to be computed twice.
-   These definitions avoid the problem...
-   */
-#define min(X, Y)                     \
-({ typeof (X) __x = (X), __y = (Y);   \
-  (__x < __y) ? __x : __y; })
-#define max(X, Y)                     \
-({ typeof (X) __x = (X), __y = (Y);   \
-  (__x > __y) ? __x : __y; })
-/* Standard definitions:
-#define min(X, Y)  ((X) < (Y) ? (X) : (Y))
-#define max(X, Y)  ((X) > (Y) ? (X) : (Y))
+   This can be avoided using GNU C extensions:
 */
+#ifdef __GNUC__
+    #define min(X, Y)            \
+    ({                           \
+        __typeof__ (X) _x = (X); \
+        __typeof__ (Y) _y = (Y); \
+        _x < _y ? _x : _y;       \
+    })
+    #define max(X, Y)            \
+    ({                           \
+        __typeof__ (X) _x = (X); \
+        __typeof__ (Y) _y = (Y); \
+        _x > _y ? _x : _y;       \
+    })
+#else
+    // Standard definitions:
+    #define min(X, Y)  ((X) < (Y) ? (X) : (Y))
+    #define max(X, Y)  ((X) > (Y) ? (X) : (Y))
+#endif
 
 // use this for comparing two float numbers
 #define EPS 1e-8

@@ -30,8 +30,9 @@ static int RandomSeed = 0;
 
 void PrintUsageAndExit(char ExecName[])
 {
-	printf("\nScenario generation code based on paper by K. Høyland, M. Kaut & S.W. Wallace.\n");
-	printf("Code by Michal Kaut (michal.kaut@iot.ntnu.no) & Diego Mathieu.\n");
+	// Note: dropping 'ø' in Høyland, since Windows console does NOT use utf-8 by default...
+	printf("\nScenario generation code based on paper by K. Hoyland, M. Kaut & S.W. Wallace.\n");
+	printf("Code by Michal Kaut (michal.kaut@sintef.no) & Diego Mathieu.\n");
 
 	printf("\nUsage: %s nmb_scen [options]\n", ExecName);
 	printf("\nList of options                                                 %15s\n", "default value");

@@ -1,3 +1,6 @@
+#ifndef HEADER_8FD34D96D283873C
+#define HEADER_8FD34D96D283873C
+
 // Header file for cubic.c
 
 #ifndef HKW_CUBIC_H
@@ -19,7 +22,9 @@
 DLL_PUBLIC double cubic_solve(double *xk);
 
 // input data
-DLL_PUBLIC double InMom[13]; /// Input moments: 12 moments + InMom[0]:=1
-DLL_PUBLIC double TgMom[4];  /// Target moments
+DLL_PUBLIC extern double InMom[13]; /// Input moments: 12 moments + InMom[0]:=1
+DLL_PUBLIC extern double TgMom[4];  /// Target moments
 
 #endif
+#endif // header guard
+
