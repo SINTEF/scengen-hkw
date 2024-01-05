@@ -91,4 +91,4 @@ void ArrayOfN01(double x[], int const nVal, int const UseDiscretizing,
 void NormalizeVector(int const size, double vector[], double prob_vec[]);
 
 
-#endif
+#endif // header guard

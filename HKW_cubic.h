@@ -1,12 +1,13 @@
-#ifndef HEADER_8FD34D96D283873C
-#define HEADER_8FD34D96D283873C
-
 // Header file for cubic.c
 
 #ifndef HKW_CUBIC_H
 #define HKW_CUBIC_H
 
 #include "dll_export_def.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define N 4           /// number of moments
 #define NBITMAX 1000
@@ -25,6 +26,8 @@ DLL_PUBLIC double cubic_solve(double *xk);
 DLL_PUBLIC extern double InMom[13]; /// Input moments: 12 moments + InMom[0]:=1
 DLL_PUBLIC extern double TgMom[4];  /// Target moments
 
+#ifdef __cplusplus
+}
 #endif
-#endif // header guard
 
+#endif // header guard

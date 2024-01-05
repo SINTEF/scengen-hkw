@@ -69,5 +69,4 @@ DLL_PUBLIC void Moments_Of_N01_Mix(int const nmb_distr, int const nmb_mom,
                                    double nc_mom[], double c_mom[]);
 */
 
-
-#endif
+#endif // header guard

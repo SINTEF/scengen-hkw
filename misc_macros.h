@@ -59,4 +59,4 @@
 
 #define allocate(var, type, size) if ((var = (type *) malloc(size * sizeof(type))) == NULL) { printf("\nNOT ENOUGH MEMORY!\n\n");	exit(1); }
 
-#endif
+#endif // header guard
