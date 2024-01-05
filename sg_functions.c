@@ -254,7 +254,8 @@ double inv_distr_N01(double p)
 /* Fill a given array with numbers from N(0,1)
    Can use either discretizing of random number generation
 	*/
-void ArrayOfN01(double x[], int const nVal, int const UseDiscretizing)
+void ArrayOfN01(double x[], int const nVal, int const UseDiscretizing,
+                int const RandDiscrOrder)
 {
 	int i, index;
 
@@ -286,15 +287,18 @@ void ArrayOfN01(double x[], int const nVal, int const UseDiscretizing)
 				outc_high = inv_distr_N01(perc_high);
 			}
 			// x is the conditional mean of the interval
-			x[i] = (density_N01(outc_high)-density_N01(outc_low)) / (perc_high-perc_low);
+			x[i] = (density_N01(outc_high)-density_N01(outc_low))
+			       / (perc_high-perc_low);
 		}
 
-		// now randomize the order
-		for (i=0; i<nVal; i++) {
-			index = i + irand(nVal - i);
-			temp = x[i];
-			x[i] = x[index];
-			x[index] = temp;
+		// now randomize the order (if required)
+		if (RandDiscrOrder) {
+			for (i=0; i<nVal; i++) {
+				index = i + irand(nVal - i);
+				temp = x[i];
+				x[i] = x[index];
+				x[index] = temp;
+			}
 		}
 	}
 }
