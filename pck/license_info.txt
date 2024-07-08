@@ -1,6 +1,6 @@
-This software is distributed under the Eclipse Public License,
-see http://www.eclipse.org/legal/epl-v10.html
-and http://en.wikipedia.org/wiki/Eclipse_Public_License
+This software is distributed under Mozilla Public License Version 2.0,
+see https://www.mozilla.org/en-US/MPL/2.0/
+and https://en.wikipedia.org/wiki/Mozilla_Public_License.
 
 The code should be cited as
 "A Heuristic for Moment-matching Scenario Generation",
